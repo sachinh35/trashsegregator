@@ -1,5 +1,5 @@
 # trashsegregator
-Hi, This repository contains code for classifying various types of trash into different categories using CNN with the dataset containing very less images.
+This repository contains code for classifying various types of trash into different categories using CNN with the dataset containing very less images.
 
 The idea for this project is based on [this](http://cs229.stanford.edu/proj2016/poster/ThungYang-ClassificationOfTrashForRecyclabilityStatus-poster.pdf) paper.
 
