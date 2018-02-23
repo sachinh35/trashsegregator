@@ -13,3 +13,5 @@ Requirements for this code:
 4)Numpy
 
 Around 400 images for each class were used for training and 100 images for each class were used for validation. The validation accuracy achieved was roughly 85%-90%. 
+
+In order to reduce time for training, we used CUDA. The GPU which used was Nvidia GTX 1050 Ti.
