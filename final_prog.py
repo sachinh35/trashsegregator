@@ -2,13 +2,28 @@ import RPi.GPIO as GPIO
 import time
 import dropbox
 import mysql.connector
+import datetime
 
 cnx = mysql.connector.connect(user='sachinh_project', password='sachin123',
                               host='johnny.heliohost.org',
                               database='sachinh_be_proj')
 
-query = ("select * from analysis")
-cursorA = cnx.cursor(buffered = True)
+now = datetime.datetime.now()
+i = now.month
+month = ""
+
+if (i == 1):
+	month = "January"
+elif (i == 2):
+	month = "February"
+elif (i == 3):
+	month = "March"
+elif (i == 4):
+	month = "April"
+elif (i == 5):
+	month = "May"
+elif (i == 6):
+	month = "June"
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -83,7 +98,7 @@ smallflap1 = GPIO.PWM(32, 50)
 smallflap2 = GPIO.PWM(33, 50)
 dbx = dropbox.Dropbox('6Xjl6rD5c1QAAAAAAAACL61p6g_XmV7oE3a3nN6SYd64LYw_zAhUbGIW3KZ6xenn')
 
-currentarea = "area1"
+currentarea = "1043"
 GPIO.output(15, True)
 #------------------------------------------------------------
 
@@ -160,7 +175,7 @@ while True:
         break
 
     elif area1_button == False:
-        currentarea = "area1"
+        currentarea = "1043"
         GPIO.output(15, True)
         GPIO.output(16, False)
         GPIO.output(18, False)
@@ -168,7 +183,7 @@ while True:
         continue 
 
     elif area2_button == False:
-        currentarea = "area2"
+        currentarea = "4912"
         GPIO.output(15, False)
         GPIO.output(16, True)
         GPIO.output(18, False)
@@ -176,7 +191,7 @@ while True:
         continue
 
     elif area3_button == False:
-        currentarea = "area3"
+        currentarea = "3245"
         GPIO.output(15, False)
         GPIO.output(16, False)
         GPIO.output(18, True)
@@ -184,7 +199,7 @@ while True:
         continue
 
     elif area4_button == False:
-        currentarea = "area4"
+        currentarea = "9826"
         GPIO.output(15, False)
         GPIO.output(16, False)
         GPIO.output(18, False)
@@ -197,86 +212,86 @@ while True:
         f = int(t)
         #####################################You've to write flap code here in each if statements############################################
         if f == 0:
-            if currentarea == "area1":
+            if currentarea == "1043":
                 area1metal += 1
                 GPIO.output(3, True)
                 put_metal_in_bin()
                 GPIO.output(3, False)
-            elif currentarea == "area2":
+            elif currentarea == "4912":
                 area2metal += 1
                 GPIO.output(3, True)
                 put_metal_in_bin()
                 GPIO.output(3, False)              
-            elif currentarea == "area3":
+            elif currentarea == "3245":
                 area3metal += 1
                 GPIO.output(3, True)
                 put_metal_in_bin()
                 GPIO.output(3, False)
-            elif currentarea == "area4":
+            elif currentarea == "9826":
                 area4metal += 1
                 GPIO.output(3, True)
                 put_metal_in_bin()
                 GPIO.output(3, False)
         elif f == 1:
-            if currentarea == "area1":
+            if currentarea == "1043":
                 area1plastic += 1
                 GPIO.output(11, True)
                 put_plastic_in_bin()
                 GPIO.output(11, False)
-            elif currentarea == "area2":
+            elif currentarea == "4912":
                 area2plastic += 1
                 GPIO.output(11, True)
                 put_plastic_in_bin()
                 GPIO.output(11, False)
-            elif currentarea == "area3":
+            elif currentarea == "3245":
                 area3plastic += 1
                 GPIO.output(11, True)
                 put_plastic_in_bin()
                 GPIO.output(11, False)
-            elif currentarea == "area4":
+            elif currentarea == "9826":
                 area4plastic += 1
                 GPIO.output(11, True)
                 put_plastic_in_bin()
                 GPIO.output(11, False)
         elif f == 2:
-            if currentarea == "area1":
+            if currentarea == "1043":
                 area1paper += 1
                 GPIO.output(7, True)
                 put_paper_in_bin()
                 GPIO.output(7, False)
-            elif currentarea == "area2":
+            elif currentarea == "4912":
                 area2paper += 1
                 GPIO.output(7, True)
                 put_paper_in_bin()
                 GPIO.output(7, False)
-            elif currentarea == "area3":
+            elif currentarea == "3245":
                 area3paper += 1
                 GPIO.output(7, True)
                 put_paper_in_bin()
                 GPIO.output(7, False)
-            elif currentarea == "area4":
+            elif currentarea == "9826":
                 area4paper += 1
                 GPIO.output(7, True)
                 put_paper_in_bin()
                 GPIO.output(7, False)
 
         elif f == 3:
-            if currentarea == "area1":
+            if currentarea == "1043":
                 area1glass += 1
                 GPIO.output(5, True)
                 put_glass_in_bin()
                 GPIO.output(5, False)
-            elif currentarea == "area2":
+            elif currentarea == "4912":
                 area2glass += 1
                 GPIO.output(5, True)
                 put_glass_in_bin()
                 GPIO.output(5, False)
-            elif currentarea == "area3":
+            elif currentarea == "3245":
                 area3glass += 1
                 GPIO.output(5, True)
                 put_glass_in_bin()
                 GPIO.output(5, False)
-            elif currentarea == "area4":
+            elif currentarea == "9826":
                 area4glass += 1
                 GPIO.output(5, True)
                 put_glass_in_bin()
@@ -286,25 +301,25 @@ while True:
         gotfile = 0
 
 
-    if currentarea == "area1":
+    if currentarea == "1043":
         tosend_metal = area1metal
         tosend_glass = area1glass
         tosend_paper = area1paper
         tosend_plastic = area1plastic
 
-    elif currentarea == "area2":
+    elif currentarea == "4912":
         tosend_metal = area2metal
         tosend_glass = area2glass
         tosend_paper = area2paper
         tosend_plastic = area2plastic
 
-    elif currentarea == "area3":
+    elif currentarea == "3245":
         tosend_metal = area3metal
         tosend_glass = area3glass
         tosend_paper = area3paper
         tosend_plastic = area3plastic
 
-    elif currentarea == "area4":
+    elif currentarea == "9826":
         tosend_metal = area4metal
         tosend_glass = area4glass
         tosend_paper = area4paper
