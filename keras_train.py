@@ -8,34 +8,14 @@ from keras import backend as K
 import cv2
 import numpy as np
 from PIL import Image
-'''In summary, this is the directory structure:
-```
-dataset-original/
-    train/
-        metal/
-            metal0.jpg
-            metal1.jpg
-            ...
-        paper/
-            paper0.jpg
-            paper1.jpg
-            ...
-    validation/
-        metal/
-            metal0.jpg
-            metal1.jpg
-            ...
-        paper/
-            paper0.jpg
-            paper1.jpg
-            ...
-'''
+import dropbox
+
 
 # dimensions of our images.
 img_width, img_height = 150, 150
 
-train_data_dir = '/home/user/dataset-original/train'
-validation_data_dir = '/home/user/dataset-original/validation'
+train_data_dir = '/home/sachin/be_project/dataset-original/train'
+validation_data_dir = '/home/sachin/be_project/dataset-original/validation'
 nb_train_samples = 1895
 nb_validation_samples = 500
 epochs = 50
@@ -105,23 +85,3 @@ model.fit_generator(
     validation_steps=nb_validation_samples // batch_size)
 
 model.save_weights('first_try.h5')
-
-#this will give you the label map, that is which numerical value is associated with which class. For eg - [0] maybe associated
-#metal, [1] maybe associated with plastic and so on. 
-label_map = (train_generator.class_indices)
-print(label_map)
-
-#This is the prediction part
-im = Image.open('image.jpg')
-imrs = im.resize((150,150))
-imrs=img_to_array(imrs)/255;
-imrs=imrs.reshape(150,150,3);
-
-x=[]
-x.append(imrs)
-x=np.array(x);
-
-predictions = model.predict(x)
-print(predictions)
-t = np.argmax(predictions)
-print(t)
