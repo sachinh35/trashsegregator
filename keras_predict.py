@@ -78,7 +78,7 @@ validation_generator = test_datagen.flow_from_directory(
     class_mode='categorical')
 
 
-model.load_weights('fifth_try.h5', by_name=True)
+model.load_weights('first_try.h5', by_name=True)
 
 
 im = Image.open('image.jpg')
