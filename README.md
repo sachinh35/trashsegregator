@@ -15,3 +15,5 @@ Requirements for this code:
 Around 300 - 400 images for each class were used for training and 100 images for each class were used for validation. The validation accuracy achieved was roughly 85%-90%. 
 
 In order to reduce time for training, CUDA was used. The GPU used was Nvidia GTX 1050 Ti.
+
+I've also uploaded the paper in the repo just for reference.
